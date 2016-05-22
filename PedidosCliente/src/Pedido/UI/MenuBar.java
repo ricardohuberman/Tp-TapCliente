@@ -14,8 +14,8 @@ public class MenuBar extends JMenuBar{
 	 * 
 	 */
 	private static final long serialVersionUID = -2617453441409885927L;
-
-	public MenuBar()
+	public JMenuItem conPedido;
+	public MenuBar(BrwPedido pedido)
 	{		
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
@@ -32,7 +32,13 @@ public class MenuBar extends JMenuBar{
         file.add(eMenuItem);
 		add(file);
 		JMenu pedidos = new JMenu("Pedidos");
-		JMenuItem conPedido = new JMenuItem("Consultar");
+		conPedido = new JMenuItem("Consultar");
+		conPedido.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent event){
+				pedido.setVisible(true);
+			}
+		});
 		pedidos.add(conPedido);
 		pedidos.addSeparator();
 		JMenuItem addPedido = new JMenuItem("Agregar Pedido");
