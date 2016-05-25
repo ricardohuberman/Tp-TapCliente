@@ -16,7 +16,6 @@ public class BrwPedido extends JPanel{
 
 	public BrwPedido(FramePedido frame){
 		setSize(100, 50);
-		
 		setLayout(new GridLayout(1, 1));
 		JButton exitButton = new JButton("Salir");
 		exitButton.addActionListener(new ActionListener(){

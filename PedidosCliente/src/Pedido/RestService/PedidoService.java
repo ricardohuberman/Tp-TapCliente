@@ -1,4 +1,4 @@
-package RestService;
+package Pedido.RestService;
 
 public class PedidoService {
 	public void getPedidos()
