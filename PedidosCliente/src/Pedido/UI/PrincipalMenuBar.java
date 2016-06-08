@@ -9,12 +9,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-public class MenuBar extends JMenuBar{
+public class PrincipalMenuBar extends JMenuBar{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2617453441409885927L;
-	public MenuBar()
+	public PrincipalMenuBar()
 	{		
 		JMenu file = new JMenu("File");
 		file.setMnemonic(KeyEvent.VK_F);
@@ -35,7 +35,7 @@ public class MenuBar extends JMenuBar{
 		conPedido.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
-				FramePedido pedido = new FramePedido();
+				FrameBrowsePedido pedido = new FrameBrowsePedido();
 				pedido.setLocationRelativeTo(null);
 				pedido.setVisible(true);
 			}

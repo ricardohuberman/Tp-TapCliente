@@ -15,7 +15,7 @@ public class PrincipalFrame extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		MenuBar menuBar = new MenuBar();
+		PrincipalMenuBar menuBar = new PrincipalMenuBar();
 		setJMenuBar(menuBar);
 	}
 	
