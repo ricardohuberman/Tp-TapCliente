@@ -4,6 +4,10 @@ import Pedido.Core.ClienteDto;
 
 public class PedidoDto {
 	
+	public PedidoDto(){
+		cliente = new ClienteDto();
+	}
+	
 	private int idPedido;
 	private ClienteDto cliente;
 	private String comida;

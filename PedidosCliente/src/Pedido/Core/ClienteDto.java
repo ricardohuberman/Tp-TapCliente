@@ -4,6 +4,10 @@ import Pedido.Core.DireccionDto;
 
 public class ClienteDto {
 	
+	public ClienteDto(){
+		direccion = new DireccionDto();
+	}
+	
 	private long id;
 	private String nombre;
 	private DireccionDto direccion;

@@ -2,9 +2,9 @@ package Pedido.UI;
 
 import javax.swing.table.DefaultTableModel;
 
-public class BrowsePedidoTable extends DefaultTableModel{
+public class DefaultTableModelPedido extends DefaultTableModel{
 	private static final long serialVersionUID = -1557423094105855337L;
-	public BrowsePedidoTable(Object[][] data,Object[] columnNames){
+	public DefaultTableModelPedido(Object[][] data,Object[] columnNames){
 		super(data,columnNames);
 	}
 	@Override
