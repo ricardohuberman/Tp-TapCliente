@@ -14,13 +14,16 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Pedido.Core.PedidoDto;
+import Pedido.RestService.PedidoService;
 
 public class BrowsePedido extends JFrame {
 	private static final long serialVersionUID = -3143943641777628664L;
 	private JTable table;
 	private JTextField seleccion;
+	private PedidoService pedidoService;
 	public BrowsePedido(){
-		setSize(100,600);
+		pedidoService = new PedidoService();
+		setSize(1000,600);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setTitle("Consulta de Pedidos");
@@ -101,8 +104,7 @@ public class BrowsePedido extends JFrame {
 				if(respuesta == JOptionPane.YES_OPTION)	{
 					//Do something
 					String texto = (String) table.getValueAt(registro, 6);
-					FormPedido pedidoForm = new FormPedido();
-					pedidoForm.DeletePedido(Integer.parseInt(texto));
+					pedidoService.deletePedido(registro);
 					ActualizoTabla();
 				}
 			}
@@ -123,10 +125,9 @@ public class BrowsePedido extends JFrame {
 		JPanel panelSurSouth = new JPanel();
 		panelSurSouth.add(exitButton);
 		panelSur.add(panelSurSouth,BorderLayout.SOUTH);
-
 		getContentPane().add(panelSur,BorderLayout.SOUTH);
 //****************************************************************************************************************
-		pack();
+//		pack();
 	}
 	
 	private void ArmoTable(Object[][] data)
@@ -139,7 +140,7 @@ public class BrowsePedido extends JFrame {
 	}
 	
 	private void ActualizoTabla(){
-		//TODO Tengo que llamar al REST para traerme los pedidos
+		pedidoService.getPedidos();
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 		int filas=table.getRowCount();
         for (int i = 0;filas>i; i++) {

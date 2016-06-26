@@ -1,13 +1,15 @@
 package Pedido.RestService;
 
+import Pedido.Core.PedidoDto;
+
 public class PedidoService {
 	public void getPedidos()
 	{}
 	
-	public void addPedido()
+	public void addPedido(PedidoDto pedido)
 	{}
 	
-	public void deletePedido(){}
+	public void deletePedido(int registro){}
 	
-	public void modifyPedido(){}
+	public void modifyPedido(PedidoDto pedido){}
 }

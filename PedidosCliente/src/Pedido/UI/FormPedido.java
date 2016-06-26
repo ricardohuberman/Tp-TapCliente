@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import Pedido.Core.LocalRequest;
 import Pedido.Core.PedidoDto;
+import Pedido.RestService.PedidoService;
 
 public class FormPedido extends JDialog{
 	private static final long serialVersionUID = 463054680201498133L;
@@ -22,14 +23,16 @@ public class FormPedido extends JDialog{
 	private JTextField textPiso;
 	private PedidoDto pedidoForm;
 	private LocalRequest request;
+	private PedidoService pedidoService;
+	private boolean estado;
 	public FormPedido(){
+		request = LocalRequest.Insertar;
 		Initialize();
 		pedidoForm = new PedidoDto();
-		request = LocalRequest.Insertar;
 	}
 	public FormPedido(PedidoDto pedido){
-		Initialize();
 		request = LocalRequest.Modificar;
+		Initialize();
 		pedidoForm = pedido;
 		textComida.setText(pedido.getComida());
 		textCalle.setText(pedido.getCliente().getDireccion().getCalle());
@@ -40,6 +43,9 @@ public class FormPedido extends JDialog{
 	}
 	
 	private void Initialize(){
+		estado = true;
+		pedidoService = new PedidoService();
+		setTitle(request.toString() + " Pedido");
 		textComida = new JTextField();
 		textCalle = new JTextField();
 		textNombre = new JTextField();
@@ -68,10 +74,11 @@ public class FormPedido extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				setPedidoForm();
 				if(request == LocalRequest.Insertar){
-					//TODO Llamo al metodo del REST para agregar el pedido
+					pedidoService.addPedido(pedidoForm);
 				}else if(request == LocalRequest.Modificar){
-					//TODO Llamo al metodo del REST para informar la modificacion
+					pedidoService.modifyPedido(pedidoForm);
 				}
+				estado = false;
 				dispose();
 			}
 		});
@@ -80,13 +87,16 @@ public class FormPedido extends JDialog{
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				estado = false;
 				dispose();
 			}
 		});
 		add(cancelButton);
 	}
-	private PedidoDto getPedidoForm() {
-		return pedidoForm;
+
+	public boolean GetEstado()
+	{
+		return estado;
 	}
 	
 	private void setPedidoForm() {
@@ -96,10 +106,5 @@ public class FormPedido extends JDialog{
 		this.pedidoForm.getCliente().setNombre(textNombre.getText());
 		this.pedidoForm.getCliente().setTelefono(textTelefono.getText());
 		this.pedidoForm.setComida(textComida.getText());
-	}
-	
-	public void DeletePedido(int registro)
-	{
-		//TODO Llamo al metodo del REST para informar la BAJA del pedido
 	}
 }
