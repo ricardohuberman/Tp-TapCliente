@@ -17,6 +17,7 @@ public class PrincipalFrame extends JFrame {
 		setLocationRelativeTo(null);
 		JMenuBar menuBar = ArmoMenuToolbar();
 		setJMenuBar(menuBar);
+		setTitle("Sistema de Pedidos");
 	}
 	
 	private JMenuBar ArmoMenuToolbar()
@@ -47,15 +48,6 @@ public class PrincipalFrame extends JFrame {
 			}
 		});
 		pedidos.add(conPedido);
-		pedidos.addSeparator();
-		JMenuItem addPedido = new JMenuItem("Agregar Pedido");
-		pedidos.add(addPedido);
-		pedidos.addSeparator();
-		JMenuItem delPedido = new JMenuItem("Borrar Pedido");
-		pedidos.add(delPedido);
-		pedidos.addSeparator();
-		JMenuItem updPedido = new JMenuItem("Modificar Pedido");
-		pedidos.add(updPedido);
 		menuToolbar.add(pedidos);
 		return menuToolbar;
 	}

@@ -5,13 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import Pedido.Core.LocalRequest;
 import Pedido.Core.PedidoDto;
 
-public class FormPedido extends JFrame{
+public class FormPedido extends JDialog{
 	private static final long serialVersionUID = 463054680201498133L;
 	private JTextField textComida;
 	private JTextField textCalle;
@@ -20,12 +21,15 @@ public class FormPedido extends JFrame{
 	private JTextField textAltura;
 	private JTextField textPiso;
 	private PedidoDto pedidoForm;
+	private LocalRequest request;
 	public FormPedido(){
 		Initialize();
 		pedidoForm = new PedidoDto();
+		request = LocalRequest.Insertar;
 	}
-	public FormPedido(PedidoDto pedido, int request){
+	public FormPedido(PedidoDto pedido){
 		Initialize();
+		request = LocalRequest.Modificar;
 		pedidoForm = pedido;
 		textComida.setText(pedido.getComida());
 		textCalle.setText(pedido.getCliente().getDireccion().getCalle());
@@ -62,8 +66,12 @@ public class FormPedido extends JFrame{
 		saveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				setPedidoForm();
+				if(request == LocalRequest.Insertar){
+					//TODO Llamo al metodo del REST para agregar el pedido
+				}else if(request == LocalRequest.Modificar){
+					//TODO Llamo al metodo del REST para informar la modificacion
+				}
 				dispose();
 			}
 		});
@@ -77,7 +85,7 @@ public class FormPedido extends JFrame{
 		});
 		add(cancelButton);
 	}
-	public PedidoDto getPedidoForm() {
+	private PedidoDto getPedidoForm() {
 		return pedidoForm;
 	}
 	
@@ -88,5 +96,10 @@ public class FormPedido extends JFrame{
 		this.pedidoForm.getCliente().setNombre(textNombre.getText());
 		this.pedidoForm.getCliente().setTelefono(textTelefono.getText());
 		this.pedidoForm.setComida(textComida.getText());
+	}
+	
+	public void DeletePedido(int registro)
+	{
+		//TODO Llamo al metodo del REST para informar la BAJA del pedido
 	}
 }
